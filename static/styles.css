@@ -1,0 +1,316 @@
+/* styles.css */
+
+body {
+    font-family: 'Roboto Mono', monospace;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.notepad {
+    width: 80%;
+    max-width: 800px;
+    height: 80vh;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    position: relative; /* Add this */
+}
+
+.notepad-header {
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 10px 20px;
+    z-index: 1; /* Add this */
+}
+
+.notepad-header h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.notepad-content {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 0 20px; /* Remove top and bottom padding */
+    line-height: 20px;
+    position: relative;
+}
+
+.notepad-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 20000%; /* Make this much larger than the visible area */
+    background-image: linear-gradient(#e5e5e5 1px, transparent 1px);
+    background-size: 100% 20px;
+    background-position: 0 -1px; /* Offset by 1px to align lines with text */
+    pointer-events: none;
+    z-index: 0;
+}
+
+.notepad-footer {
+    border-top: 1px solid #e0e0e0;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff; /* Add this */
+    z-index: 1; /* Add this */
+}
+
+
+#status {
+    font-size: 14px;
+    color: #666;
+}
+
+.user-message, .ai-message {
+    margin-bottom: 15px;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.user-message {
+    background-color: #e6f3ff;
+}
+
+.ai-message {
+    background-color: #f0f0f0;
+}
+
+
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+}
+
+.modal-content label {
+    display: block;
+    margin-top: 10px;
+}
+
+.modal-content textarea {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+.modal-content button {
+    margin-top: 10px;
+}
+
+
+#deleteButton {
+    background-color: #dc3545;
+}
+
+
+
+.user-message, .ai-message {
+    margin-bottom: 19px; /* Adjust to align with lines */
+    padding: 0 10px; /* Remove top and bottom padding */
+    border-radius: 5px;
+    position: relative;
+    z-index: 1;
+}
+
+.user-message {
+    background-color: rgba(230, 243, 255, 0.8);
+}
+
+.ai-message {
+    background-color: rgba(240, 240, 240, 0.8);
+}
+
+
+.notepad-content > div:first-child {
+    padding-top: 20px; /* Add padding to the first message */
+}
+
+/* Add this new rule */
+.notepad-content > div:last-child {
+    padding-bottom: 20px; /* Add padding to the last message */
+}
+
+#changeSavePathButton,
+#changePromptButton {
+    background-color: #000000;
+    color: white;
+}
+
+
+.modal-content input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+
+
+#recordButton {
+    background-color: transparent;
+    border: none;
+    color: #515151;
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.2s, opacity 0.2s;
+    padding: 10px;
+}
+
+#recordButton:hover {
+    opacity: 0.8;
+}
+
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #1a1a1a;
+}
+
+.dark-mode .notepad {
+    background-color: #2a2a2a;
+}
+
+.dark-mode .notepad-header {
+    background-color: #333;
+    border-bottom-color: #444;
+}
+
+.dark-mode .notepad-header h1,
+.dark-mode .notepad-content,
+.dark-mode #status,
+.dark-mode .user-message,
+.dark-mode .ai-message {
+    color: #fff;
+}
+
+.dark-mode .notepad-content::before {
+    background-image: linear-gradient(#444 1px, transparent 1px);
+}
+
+.dark-mode .user-message {
+    background-color: rgba(70, 130, 180, 0.2);
+}
+
+.dark-mode .ai-message {
+    background-color: rgba(100, 100, 100, 0.2);
+}
+
+.dark-mode #changePromptButton,
+.dark-mode #changeSavePathButton {
+    background-color: #e0e0e0;
+    color: #000;
+}
+
+.dark-mode #recordButton {
+    color: #87CEFA;
+}
+
+.dark-mode .notepad-footer {
+    border-top-color: #444;
+    background-color: #2a2a2a;
+}
+
+.dark-mode .modal-content {
+    background-color: #2a2a2a;
+    color: #fff;
+}
+
+.dark-mode .modal-content input[type="text"],
+.dark-mode .modal-content textarea {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #444;
+}
+
+.hamburger-menu {
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.top-right-controls {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    z-index: 1000;
+}
+
+.dark-mode-toggle {
+    cursor: pointer;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+#menuModal .modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#menuModal .modal-content button {
+    margin: 10px 0;
+    width: 200px;
+}
+
+.dark-mode-toggle i {
+    margin-left: 5px;
+}
+
+.dark-mode .dark-mode-toggle .bi-sun {
+    display: none;
+}
+
+.dark-mode .dark-mode-toggle .bi-moon {
+    display: inline-block;
+}
+
+.dark-mode-toggle .bi-moon {
+    display: none;
+}
+
+.dark-mode .dark-mode-toggle .bi-toggle-off {
+    display: none;
+}
+
+.dark-mode .dark-mode-toggle .bi-toggle-on {
+    display: inline-block;
+}
+
+.dark-mode-toggle .bi-toggle-on {
+    display: none;
+}
